@@ -133,7 +133,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_MouseLook.UpdateCursorLock();
         }
 
-
+		
         private void PlayJumpSound()
         {
             m_AudioSource.clip = m_JumpSound;
@@ -176,7 +176,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_FootstepSounds[0] = m_AudioSource.clip;
         }
 
-
+	
         private void UpdateCameraPosition(float speed)
         {
             Vector3 newCameraPosition;
@@ -233,7 +233,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
         }
 
-
+		
         private void RotateView()
         {
             m_MouseLook.LookRotation (transform, m_Camera.transform);

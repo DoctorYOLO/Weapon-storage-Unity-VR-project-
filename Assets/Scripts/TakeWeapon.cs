@@ -1,9 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TakeWeapon : MonoBehaviour {
+public class TakeWeapon : MonoBehaviour, IGvrGazeResponder {
 
-	public GameObject SelectObject;
+	private bool isInside = false;
+	public GameObject selectObject;
+
+	public void OnGazeEnter(){
+		isInside = true;
+
+	}
+
+	public void OnGazeExit(){
+		isInside = false;
+
+	}
+
+	public void OnGazeTrigger(){
+
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -12,16 +27,19 @@ public class TakeWeapon : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
-	}
-
-	public void Take() {
-		if (gameObject.GetComponent<MeshRenderer>().enabled == true) {
-			gameObject.GetComponent<MeshRenderer>().enabled = false;
-			SelectObject.SetActive (true);
-		} else {
-			gameObject.GetComponent<MeshRenderer>().enabled = true;
-			SelectObject.SetActive (false);
+		if (isInside == true) {
+			if (Input.GetButtonDown ("Fire1")) {
+				if (gameObject.GetComponent<MeshRenderer> ().enabled == true) {
+					gameObject.GetComponent<MeshRenderer> ().enabled = false;
+					selectObject.SetActive (true);
+				} else {
+					gameObject.GetComponent<MeshRenderer> ().enabled = true;
+					selectObject.SetActive (false);
+				}
+			}
 		}
+		
+
 	}
+
 }

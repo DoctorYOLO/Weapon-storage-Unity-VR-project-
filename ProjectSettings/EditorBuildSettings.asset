@@ -6,5 +6,4 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/3DForge/Fantasy_Interiors/Villages_&_Towns/Demo Scenes/Forge/Blacksmith's
-      Forge.unity
+    path: Assets/Scenes/Blacksmith's Forge.unity
