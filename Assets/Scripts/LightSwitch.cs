@@ -4,6 +4,12 @@ using System.Collections;
 public class LightSwitch : MonoBehaviour, IGvrGazeResponder {
 	
 	private bool isInside = false;
+	private bool tipOn = false;
+	private float distance;
+	public Animator AnimTip;
+	public Transform player;
+	public Transform thisObject;
+
 
 	public void OnGazeEnter(){
 		isInside = true;
@@ -26,6 +32,15 @@ public class LightSwitch : MonoBehaviour, IGvrGazeResponder {
 	
 	// Update is called once per frame
 	void Update () {
+		distance = Vector3.Distance(player.position, thisObject.position);
+		if ((distance < 2.5) && (tipOn == false)) {
+			AnimTip.SetTrigger ("FadeIn");
+			tipOn = true;
+		} 
+		if ((distance > 2.5) && (tipOn == true)) {
+			AnimTip.SetTrigger ("FadeOut");
+			tipOn = false;
+		}
 		if (isInside == true) {
 			if (Input.GetButtonDown ("Fire1")) {
 

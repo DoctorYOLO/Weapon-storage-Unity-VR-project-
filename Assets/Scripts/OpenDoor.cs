@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TakeWeapon : MonoBehaviour, IGvrGazeResponder {
+public class OpenDoor : MonoBehaviour, IGvrGazeResponder {
 
+	private bool isOpen = false;
 	private bool isInside = false;
 	private bool tipOn = false;
 	private float distance;
-	public GameObject selectObject;
+	public Animator AnimDoor;
 	public Animator AnimTip;
 	public Transform player;
 	public Transform thisObject;
@@ -27,8 +28,9 @@ public class TakeWeapon : MonoBehaviour, IGvrGazeResponder {
 
 	// Use this for initialization
 	void Start () {
-	
+		//anim = GetComponent<Animator> ();
 	}
+
 
 	// Update is called once per frame
 	void Update () {
@@ -43,17 +45,15 @@ public class TakeWeapon : MonoBehaviour, IGvrGazeResponder {
 		}
 		if (isInside == true) {
 			if (Input.GetButtonDown ("Fire1")) {
-				if (gameObject.GetComponent<MeshRenderer> ().enabled == true) {
-					gameObject.GetComponent<MeshRenderer> ().enabled = false;
-					selectObject.SetActive (true);
+				if (isOpen == false) {
+					AnimDoor.SetBool ("OpenDoor", true);
+					isOpen = true;
 				} else {
-					gameObject.GetComponent<MeshRenderer> ().enabled = true;
-					selectObject.SetActive (false);
+					AnimDoor.SetBool ("OpenDoor", false);
+					isOpen = false;
 				}
+				
 			}
 		}
-		
-
 	}
-
 }
