@@ -33,11 +33,11 @@ public class LightSwitch : MonoBehaviour, IGvrGazeResponder {
 	// Update is called once per frame
 	void Update () {
 		distance = Vector3.Distance(player.position, thisObject.position);
-		if ((distance < 2.5) && (tipOn == false)) {
+		if ((distance < 2.5) && (tipOn == false) && (isInside == true)) {
 			AnimTip.SetTrigger ("FadeIn");
 			tipOn = true;
 		} 
-		if ((distance > 2.5) && (tipOn == true)) {
+		if ((distance > 2.5) && (tipOn == true) && (isInside == false)) {
 			AnimTip.SetTrigger ("FadeOut");
 			tipOn = false;
 		}

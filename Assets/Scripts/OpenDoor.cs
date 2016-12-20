@@ -11,10 +11,11 @@ public class OpenDoor : MonoBehaviour, IGvrGazeResponder {
 	public Animator AnimTip;
 	public Transform player;
 	public Transform thisObject;
+	public GameObject help;
+	public GameObject controls;
 
 	public void OnGazeEnter(){
 		isInside = true;
-
 	}
 
 	public void OnGazeExit(){
@@ -35,11 +36,11 @@ public class OpenDoor : MonoBehaviour, IGvrGazeResponder {
 	// Update is called once per frame
 	void Update () {
 		distance = Vector3.Distance(player.position, thisObject.position);
-		if ((distance < 2.5) && (tipOn == false)) {
+		if ((distance < 2.5) && (tipOn == false) && (isInside == true)) {
 			AnimTip.SetTrigger ("FadeIn");
 			tipOn = true;
 		} 
-		if ((distance > 2.5) && (tipOn == true)) {
+		if ((distance > 2.5) && (tipOn == true) && (isInside == false)) {
 			AnimTip.SetTrigger ("FadeOut");
 			tipOn = false;
 		}
@@ -48,6 +49,8 @@ public class OpenDoor : MonoBehaviour, IGvrGazeResponder {
 				if (isOpen == false) {
 					AnimDoor.SetBool ("OpenDoor", true);
 					isOpen = true;
+					help.SetActive (false);
+					controls.SetActive (false);
 				} else {
 					AnimDoor.SetBool ("OpenDoor", false);
 					isOpen = false;
